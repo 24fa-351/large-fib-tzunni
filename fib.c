@@ -23,24 +23,17 @@ unsigned long long int fibonacciRecursive(unsigned long long int recursionValue)
 }
 
 int main(int argc, char *argv[]) {
-   unsigned long long int firstHalfOfN = 0;
-   sscanf(argv[1], "%llu", &firstHalfOfN);
-   unsigned long long int secondHalfOfN = 0;
+   unsigned long long int fibN = 0;
+   sscanf(argv[1], "%llu", &fibN);
+   --fibN;
    char methodOfAddition = *argv[2];
-   char *fileName = argv[3];
-
-   FILE * fibonacciFile = fopen(fileName, "r");
-   fscanf(fibonacciFile, "%llu", &secondHalfOfN);
-   fclose(fibonacciFile);
-   unsigned long long int finalN = firstHalfOfN + secondHalfOfN - 1; // 1-based index
 
    if (methodOfAddition == 'i') { // iterative
-      unsigned long long int sumOfFibonacci = fibonacciIterative(finalN);
+      unsigned long long int sumOfFibonacci = fibonacciIterative(fibN);
       printf("%llu", sumOfFibonacci);
-      return 0;
    } else { // recursive
-      unsigned long long int sumOfFibonacci = fibonacciRecursive(finalN);
+      unsigned long long int sumOfFibonacci = fibonacciRecursive(fibN);
       printf("%llu", sumOfFibonacci);
-      return 0;
    }
+   return 0;
 }
